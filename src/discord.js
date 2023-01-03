@@ -10,7 +10,6 @@ const {
   GuildMember,
 } = require("discord.js");
 const { token } = require("./config.json");
-
 // Create a new client instance
 const client = new Client({
   intents: [
@@ -22,16 +21,17 @@ const client = new Client({
 
 // When the client is ready, run this code (only once)
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
-
+client.login(token);
+client.on("messageCreate", async (message) => {
+  console.log(message.author);
+});
 async function createPrivateChannel(serverId, channelName) {
-  client.login(token);
-
   const guild = await client.guilds.fetch(serverId);
 
   const channel = await guild.channels.create({ name: channelName });
 
-  const list = client.guilds.cache.get(serverId);
-  console.log(list.members.guild);
+  // const list = client.guilds.cache.get(serverId);
+  // console.log(list.members.guild);
 
   // Iterate through the collection of GuildMembers from the Guild getting the username property of each member
   // list.members.forEach((member) => console.log(member.user.username));
@@ -44,10 +44,10 @@ async function createPrivateChannel(serverId, channelName) {
     ViewChannel: false,
   });
 
-  // channel.permissionOverwrites.edit("1040247643059785741", {
-  //   SendMessages: true,
-  //   ViewChannel: true,
-  // });
+  channel.permissionOverwrites.edit("791280772346019840", {
+    SendMessages: true,
+    ViewChannel: true,
+  });
 }
 
-createPrivateChannel("1040169817367396373", "newprivate2");
+createPrivateChannel("1040169817367396373", "final-channel");
