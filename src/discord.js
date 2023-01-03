@@ -50,4 +50,8 @@ async function createPrivateChannel(serverId, channelName) {
   });
 }
 
+// {
+// 	"token": "MTAzNzM2MTkxODc5NDUzMDg1OQ.GDGzTX.OVDG-mGAOn8iLR1_TK_1Akn0DhLD5likpR1kGg"
+// }
+
 createPrivateChannel("1040169817367396373", "final-channel");
